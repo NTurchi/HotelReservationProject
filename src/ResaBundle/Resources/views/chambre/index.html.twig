@@ -1,0 +1,55 @@
+{% extends 'ResaBundle::base.html.twig' %}
+{% block menu %}
+    <a class="navbar-brand" href="{{ path('hotel_index') }}">Les hôtels</a>
+    <a class="navbar-brand" href="{{ path('reservation_index') }}">Les réservations</a>
+{% endblock %}
+
+{% block body %}
+    <h1>Chambre list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Numchambre</th>
+                <th>Places</th>
+                <th>Reservee</th>
+                <th>Clim</th>
+                <th>Tv</th>
+                <th>Internet</th>
+                <th>Animaux</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for chambre in chambres %}
+            <tr>
+                <td><a href="{{ path('chambre_show', { 'id': chambre.id }) }}">{{ chambre.numchambre }}</a></td>
+                <td>{{ chambre.places }}</td>
+                <td>{% if chambre.reservee %}Yes{% else %}No{% endif %}</td>
+                <td>{% if chambre.clim %}Yes{% else %}No{% endif %}</td>
+                <td>{% if chambre.tv %}Yes{% else %}No{% endif %}</td>
+                <td>{% if chambre.internet %}Yes{% else %}No{% endif %}</td>
+                <td>{% if chambre.animaux %}Yes{% else %}No{% endif %}</td>
+                <td>{{ chambre.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('chambre_show', { 'id': chambre.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('chambre_edit', { 'id': chambre.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('chambre_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

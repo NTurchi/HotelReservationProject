@@ -1,0 +1,77 @@
+{% extends 'ResaBundle::base.html.twig' %}
+{% block menu %}
+    <a class="navbar-brand" href="{{ path('hotel_index') }}">Les hôtels</a>
+    <a class="navbar-brand" href="{{ path('reservation_index') }}">Les réservations</a>
+{% endblock %}
+
+{% block body %}
+    <h1>Hotel : {{ hotel.ville }}</h1>
+
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <th>Ville</th>
+                <td>{{ hotel.ville }}</td>
+            </tr>
+            <tr>
+                <th>Nombre de chambre</th>
+                <td>{{ chambres|length }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('hotel_index') }}" class="btn btn-primary">Retourner à la liste</a>
+    <a href="{{ path('hotel_edit', { 'id': hotel.id }) }}"class="btn btn-warning">Modifier</a>
+
+    <h1>Liste des chambres de l'hôtel</h1>
+    <a href="{{ path('chambre_new', {'idHotel' : hotel.id}) }}" class="btn btn-success">Ajouter une chambre</a>
+    <table class="table table-bordered" style="margin-top: 10px;">
+        <thead>
+        <tr>
+            <th>N° chambre</th>
+            <th>Place</th>
+            <th>Climatisation</th>
+            <th>Tv</th>
+            <th>Internet</th>
+            <th>Animaux</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for chambre in chambres %}
+            <tr>
+                <td>{{ chambre.numchambre }}</td>
+
+                <td>{{ chambre.places }}</td>
+                {% if chambre.clim == 1 %}
+                <td class="success"></td>
+                {% else %}
+                <td class="danger"></td>
+                {% endif %}
+
+                {% if chambre.tv  == 1 %}
+                    <td class="success"></td>
+                {% else %}
+                    <td class="danger"></td>
+                {% endif %}
+
+                {% if chambre.internet  == 1 %}
+                    <td class="success"></td>
+                {% else %}
+                    <td class="danger"></td>
+                {% endif %}
+
+                {% if chambre.animaux  == 1 %}
+                    <td class="success"></td>
+                {% else %}
+                    <td class="danger"></td>
+                {% endif %}
+
+                <td>
+                    <a href="{{ path('chambre_edit', { 'id': chambre.id }) }}" class="btn btn-active">Modifier <span class="glyphicon glyphicon-pencil"></span> </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

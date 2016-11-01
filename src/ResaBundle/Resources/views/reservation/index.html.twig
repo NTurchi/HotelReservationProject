@@ -1,0 +1,46 @@
+{% extends 'ResaBundle::base.html.twig' %}
+{% block menu %}
+    <a class="navbar-brand" href="{{ path('hotel_index') }}">Les hôtels</a>
+    <a class="navbar-brand" href="{{ path('reservation_index') }}">Les réservations</a>
+{% endblock %}
+
+{% block body %}
+    <h1>Reservation list</h1>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Date d'arrivee</th>
+                <th>Date de depart</th>
+                <th>Email</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Idreservation</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservations %}
+            <tr>
+                <td><a href="{{ path('reservation_show', { 'id': reservation.idreservation }) }}">{{ reservation.datearrivee|date('Y-m-d') }}</a></td>
+                <td>{% if reservation.datedepart %}{{ reservation.datedepart|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ reservation.email }}</td>
+                <td>{{ reservation.nom }}</td>
+                <td>{{ reservation.prenom }}</td>
+                <td>{{ reservation.idreservation }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('reservation_show', { 'id': reservation.idreservation }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('reservation_edit', { 'id': reservation.idreservation }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'ResaBundle::base.html.twig' %}
+{% form_theme edit_form 'bootstrap_3_layout.html.twig' %}
+{% block menu %}
+    <a class="navbar-brand" href="{{ path('hotel_index') }}">Les hôtels</a>
+    <a class="navbar-brand" href="{{ path('reservation_index') }}">Les réservations</a>
+{% endblock %}
+
+{% block body %}
+    <h1>Chambre edit</h1>
+
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+    <div class="form-group">
+        <input type="submit" value="Modifier" class="btn btn-success"/>
+    </div>
+    {{ form_end(edit_form) }}
+    {{ form_start(delete_form) }}
+    <input type="submit" value="Supprimer" class="btn btn-danger pull-right">
+    {{ form_end(delete_form) }}
+    <div class="form-group">
+        <a href="{{ path('hotel_show', {'id' : chambre.idHotel.id}) }}" class="btn btn-primary">Retourner à l'hotel {{ chambre.idHotel.ville }}</a>
+    </div>
+
+{% endblock %}

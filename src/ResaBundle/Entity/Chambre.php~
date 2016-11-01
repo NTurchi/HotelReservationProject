@@ -1,0 +1,85 @@
+<?php
+
+namespace ResaBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Chambre
+ *
+ * @ORM\Table(name="Chambre", indexes={@ORM\Index(name="FK_Chambre_Id_Hotel", columns={"Id_Hotel"})})
+ * @ORM\Entity
+ */
+class Chambre
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="numChambre", type="integer", nullable=false)
+     */
+    private $numchambre;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="Places", type="integer", nullable=false)
+     */
+    private $places;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="Reservee", type="boolean", nullable=true)
+     */
+    private $reservee;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="Clim", type="boolean", nullable=false)
+     */
+    private $clim;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="TV", type="boolean", nullable=false)
+     */
+    private $tv;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="Internet", type="boolean", nullable=false)
+     */
+    private $internet;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="Animaux", type="boolean", nullable=false)
+     */
+    private $animaux;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="Id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \ResaBundle\Entity\Hotel
+     *
+     * @ORM\ManyToOne(targetEntity="ResaBundle\Entity\Hotel")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Id_Hotel", referencedColumnName="Id")
+     * })
+     */
+    private $idHotel;
+
+
+}
+

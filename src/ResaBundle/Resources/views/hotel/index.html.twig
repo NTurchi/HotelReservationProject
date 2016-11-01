@@ -1,0 +1,38 @@
+{% extends 'ResaBundle::base.html.twig' %}
+{% block menu %}
+<a class="navbar-brand" href="{{ path('hotel_index') }}">Les hôtels</a>
+<a class="navbar-brand" href="{{ path('reservation_index') }}">Les réservations</a>
+{% endblock %}
+{% block body %}
+    <h1>Administration : Liste des hôtels</h1>
+    <a href="{{ path('fos_user_security_logout') }}">Se déconnecter</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Ville</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for hotel in hotels %}
+            <tr>
+                <td><a href="{{ path('hotel_show', { 'id': hotel.id }) }}">{{ hotel.ville }}</a></td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('hotel_show', { 'id': hotel.id }) }}">Montrer</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('hotel_edit', { 'id': hotel.id }) }}">Modifier</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('chambre_new', { 'idHotel': hotel.id }) }}">Ajouter une chambre</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('hotel_new') }}" class="btn btn-success">Ajouter un nouvel hôtel</a>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'ResaBundle::base.html.twig' %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+{% block menu %}
+    <a class="navbar-brand" href="{{ path('hotel_index') }}">Les hôtels</a>
+    <a class="navbar-brand" href="{{ path('reservation_index') }}">Les réservations</a>
+{% endblock %}
+
+{% block body %}
+    <h1>Ajouter un hôtel</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Créer" class="btn btn-success" />
+    {{ form_end(form) }}
+
+            <a href="{{ path('hotel_index') }}" class="btn btn-primary" style="margin-top: 10px;">Retourner à la liste</a>
+{% endblock %}

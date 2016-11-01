@@ -1,0 +1,10 @@
+ResaBundle\Entity\Chambre:
+    chambre_{1..500}:
+        numchambre: <numberBetween(0, 400)>
+        places: <numberBetween(1,5)>
+        reservee: <numberBetween(0,1)>
+        tv: <numberBetween(0,1)>
+        clim: <numberBetween(0,1)>
+        internet: <numberBetween(0,1)>
+        animaux: <numberBetween(0,1)>
+        idhotel: "@hotel*"

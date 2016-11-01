@@ -1,0 +1,52 @@
+{% extends '@Resa/base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3" style="text-align: center; margin-bottom: 30px;">
+            <h2>Réserver votre chambre parmis celles disponibles de l'hôtel : {{ hotel.ville }}</h2>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 50px">
+        <div class="col-md-6 col-md-offset-3">
+            <table class="table-bordered chambre-table">
+                <tr class="head-table">
+                    <th>Numéro de la Chambre</th>
+                    <th>Nombre de place</th>
+                    <th>Climatisation</th>
+                    <th>Télévision</th>
+                    <th>Internet</th>
+                    <th>Animaux acceptés</th>
+                </tr>
+                {% for chambre in chambresLibres %}
+                    <tr>
+                        <td>{{ chambre.numchambre }}</td>
+                        <td>{{ chambre.places }}</td>
+                        <td class="case">{{ chambre.clim }}</td>
+                        <td class="case">{{ chambre.tv }}</td>
+                        <td class="case">{{ chambre.internet }}</td>
+                        <td class="case">{{ chambre.animaux }}</td>
+                        <td><a href="{{ path('reservation_new', {'idChambre': chambre.id}) }}" class="btn btn-success">Réserver</a></td>
+                    </tr>
+                {% endfor  %}
+            </table>
+        </div>
+    </div>
+    {% for chambre in chambresLibres %}
+
+    {% endfor  %}
+{% endblock %}
+
+{% block js %}
+    <script>
+        $('.case').each(function(){
+            var valeur = $(this).text();
+            if(valeur == "1"){
+                $(this).addClass("bg-success");
+                $(this).text(" ");
+            } else {
+                $(this).addClass("bg-danger")
+            }
+        });
+    </script>
+
+{% endblock %}

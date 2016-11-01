@@ -1,0 +1,36 @@
+{% extends 'ResaBundle::base.html.twig' %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        {% for notice in app.session.flashbag.get('notice') %}
+            <div class="flashbag col-md-8 col-md-offset-2" style="margin-top: 10px;">
+                <p class="alert alert-danger">{{ notice }}</p>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2" style="text-align: center;">
+            <h1>Reservation pour la chambre n°{{ chambre.id }} de l'hôtel {{ chambre.idhotel.ville }}</h1>
+        </div>
+
+        <div class="col-md-6 col-md-offset-3">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <input class="btn btn-success" type="submit" value="Réserver" />
+            {{ form_end(form) }}
+            <a class="btn btn-primary go-menu" href="{{ path('homepage') }}">Revenir au menu</a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function() {
+            $('.js-datepicker').datepicker({
+                format: 'yyyy-mm-dd'
+            });
+        });
+    </script>
+{% endblock %}
