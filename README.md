@@ -1,4 +1,4 @@
-projet
+Hotel Reservation Symfony Project
 ======
 
 A Symfony project created on June 27, 2016, 6:50 am.
